@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
   Batch batch;
   while (batcher >> batch) {
-    std::cout << batch.size() << std::endl;
+    std::cout << batch << std::endl;
   }
 
   return 0;
