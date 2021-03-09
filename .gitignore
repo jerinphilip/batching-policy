@@ -1,0 +1,5 @@
+.*.swp
+a.out
+
+# log output files
+*.log 
