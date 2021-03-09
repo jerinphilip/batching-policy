@@ -16,8 +16,6 @@ struct Request {
   RequestSentence sentence(size_t idx) {
     return (RequestSentence){no, nice, idx, sentences[idx]};
   }
-
-  friend std::ostream &operator<<(std::ostream &out, const Request &r);
 };
 
 std::ostream &operator<<(std::ostream &out, const Request &r) {
@@ -31,4 +29,12 @@ std::ostream &operator<<(std::ostream &out, const Request &r) {
   return out;
 }
 
-typedef std::vector<RequestSentence> Batch;
+class Batch {
+public:
+  void add(const RequestSentence &sentence) { sentences_.push_back(sentence); }
+  size_t size() const { return sentences_.size(); }
+  void clear() { sentences_.clear(); };
+
+private:
+  std::vector<RequestSentence> sentences_;
+};

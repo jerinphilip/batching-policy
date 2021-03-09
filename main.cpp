@@ -26,9 +26,18 @@ int main(int argc, char *argv[]) {
   RandomRequestGen requestGen(randomSeed, maxLengthBreak, niceBound,
                               maxSentences);
 
+  GreedyBatcher batcher(miniBatchwords, maxLengthBreak);
+
   for (size_t requestId = 1; requestId <= numRequests; requestId++) {
     Request request = requestGen(requestId);
+    batcher.addRequest(request);
     std::cout << request << std::endl;
   }
+
+  Batch batch;
+  while (batcher >> batch) {
+    std::cout << batch.size() << std::endl;
+  }
+
   return 0;
 }
