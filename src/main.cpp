@@ -1,12 +1,12 @@
 /// This single-file implementation implements a Batcher, which allows addition
 /// of Requests and a method to cleave a Batch off the existing storage.
 
-#include "CLI11.hpp"
+#include "3rd_party/CLI11.hpp"
 #include <iostream>
 
-#include "batcher.h"
-#include "brandomgen.h"
-#include "data.h"
+#include "batching_policy/batcher.h"
+#include "batching_policy/brandomgen.h"
+#include "batching_policy/data.h"
 
 int main(int argc, char *argv[]) {
   CLI::App app{"Optimal priority-length batching policy testbed"};
