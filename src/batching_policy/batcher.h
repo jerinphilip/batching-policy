@@ -63,6 +63,6 @@ public:
     }
   }
 
-private:
+protected:
   std::vector<std::set<RequestSentence, proper_priority>> bucket_;
 };
