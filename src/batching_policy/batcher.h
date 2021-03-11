@@ -22,7 +22,7 @@ public:
   /// Generates a batch based on current priority / length.
   virtual bool cleaveBatch(Batch &batch) = 0;
   /// Adds a Request onto the scheduling / batching.
-  virtual void addRequest(Request &request) = 0;
+  virtual void addRequest(std::shared_ptr<Request> request) = 0;
 
 protected:
   size_t miniBatchWords_{0};
@@ -56,10 +56,10 @@ public:
     return isValidBatch;
   }
 
-  void addRequest(Request &request) {
-    for (size_t idx = 0; idx < request.sentences.size(); idx++) {
-      RequestSentence sentence = request.sentence(idx);
-      bucket_[sentence.length].insert(sentence);
+  void addRequest(std::shared_ptr<Request> request) {
+    for (size_t idx = 0; idx < request->sentences.size(); idx++) {
+      RequestSentence sentence = (RequestSentence){request, idx};
+      bucket_[sentence.length()].insert(sentence);
     }
   }
 

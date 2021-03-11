@@ -4,27 +4,27 @@
 
 bool _proper_priority(const RequestSentence &first,
                       const RequestSentence &second) {
-  if (first.nice == second.nice) {
-    if (first.no == second.no) {
+  if (first.nice() == second.nice()) {
+    if (first.no() == second.no()) {
       return first.index < second.index;
     } else {
-      return first.no < second.no;
+      return first.no() < second.no();
     }
   } else {
-    return first.nice < second.nice;
+    return first.nice() < second.nice();
   }
 }
 
 bool _invert_priority(const RequestSentence &first,
                       const RequestSentence &second) {
-  if (first.nice == second.nice) {
-    if (first.no == second.no) {
+  if (first.nice() == second.nice()) {
+    if (first.no() == second.no()) {
       return first.index > second.index;
     } else {
-      return first.no > second.no;
+      return first.no() > second.no();
     }
   } else {
-    return first.nice > second.nice;
+    return first.nice() > second.nice();
   }
 }
 

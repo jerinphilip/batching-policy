@@ -14,16 +14,13 @@ public:
   }
 
   Request operator()(size_t requestId) {
-    Request request;
-
-    request.no = requestId;
-    request.nice = nice();
-    int numSentencesVal = numSentences();
+    size_t numSentencesVal{numSentences()};
+    std::vector<size_t> sentences;
 
     for (size_t idx = 0; idx < numSentencesVal; idx++) {
-      request.sentences.push_back(sequenceLength());
+      sentences.push_back(sequenceLength());
     }
-    return request;
+    return Request(requestId, nice(), sentences);
   }
 
 private:
